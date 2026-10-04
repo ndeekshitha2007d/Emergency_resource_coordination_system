@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Emergency Resource Dispatch</title>
+    <script src="js/validation.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f4f6f9; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; background: #ffffff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h2 { color: #d9534f; border-bottom: 2px solid #d9534f; padding-bottom: 10px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; }
+        input[type="text"], select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        .error-message { color: #d9534f; font-size: 0.85em; display: none; }
+        .btn-dispatch { background-color: #d9534f; color: white; border: none; padding: 12px 20px; font-size: 16px; border-radius: 4px; cursor: pointer; width: 100%; }
+        .btn-dispatch:hover { background-color: #c9302c; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Emergency Dispatch Portal</h2>
+    <form id="dispatchForm" action="/WebContent/dispatch" method="POST" onsubmit="return validateDispatchForm()">
+        <div class="form-group">
+            <label for="incidentType">Incident Type:</label>
+            <input type="text" id="incidentType" name="incidentType" placeholder="e.g., Structural Fire">
+            <span class="error-message" id="incidentError">Please enter a valid incident type.</span>
+        </div>
+        
+        
+        <div class="form-group">
+            <label for="severity">Severity Level:</label>
+            <select id="severity" name="severity">
+                <option value="">-- Select Severity --</option>
+                <option value="CRITICAL">CRITICAL</option>
+                <option value="HIGH">HIGH</option>
+                <option value="MEDIUM">MEDIUM</option>
+                <option value="LOW">LOW</option>
+            </select>
+            <span class="error-message" id="severityError">Select a severity level.</span>
+        </div>
+
+        <div class="form-group">
+            <label for="resourceId">Assign Resource ID (Format: RES-XXXX):</label>
+            <input type="text" id="resourceId" name="resourceId" placeholder="e.g., RES-1042">
+            <span class="error-message" id="resourceIdError">ID must follow format RES-XXXX (4 digits).</span>
+        </div>
+
+        <button type="submit" class="btn-dispatch">Trigger Immediate Dispatch</button>
+    </form>
+</div>
+</body>
+</html>
